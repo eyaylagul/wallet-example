@@ -36,9 +36,9 @@ public class Wallet {
             List<Transaction> transactions
     ) {
         this.id = id;
-        this.customer = Objects.requireNonNull(customer, "customer is required");
-        this.walletName = Objects.requireNonNull(walletName, "walletName is required");
-        this.currency = Objects.requireNonNull(currency, "currency is required");
+        this.customer = customer;
+        this.walletName = walletName;
+        this.currency = currency;
         this.activeForShopping = activeForShopping;
         this.activeForWithdraw = activeForWithdraw;
         this.balance = balance != null ? balance : BigDecimal.ZERO;
