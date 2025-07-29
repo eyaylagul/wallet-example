@@ -13,59 +13,38 @@ class CustomerTest {
     void withValidFields_shouldCreateCustomer() {
         Tckn tckn = new Tckn("12345678901");
 
-        Customer customer = Customer.builder()
-                .id(1L)
-                .name("Ali")
-                .surname("Veli")
-                .tckn(tckn)
-                .createdAt(LocalDate.now())
-                .build();
+        Customer customer = new Customer(1L, "Ali", "Veli", tckn, LocalDate.now());
 
-        assertEquals("Ali", customer.getName());
-        assertEquals("Veli", customer.getSurname());
-        assertEquals(tckn.value(), customer.getTckn().value());
-        assertNotNull(customer.getCreatedAt());
+
+        assertEquals("Ali", customer.name());
+        assertEquals("Veli", customer.surname());
+        assertEquals(tckn.value(), customer.tckn().value());
+        assertNotNull(customer.createdAt());
     }
 
     @Test
     void whenNameIsNull_shouldThrowException() {
         Tckn tckn = new Tckn("12345678901");
 
-        assertThrows(NullPointerException.class, () -> Customer.builder()
-                .surname("Veli")
-                .tckn(tckn)
-                .createdAt(LocalDate.now())
-                .build());
+        assertThrows(NullPointerException.class, () -> new Customer(null, null, "Veli", tckn, LocalDate.now()));
     }
 
     @Test
     void whenSurnameIsNull_shouldThrowException() {
         Tckn tckn = new Tckn("12345678901");
 
-        assertThrows(NullPointerException.class, () -> Customer.builder()
-                .name("Ali")
-                .tckn(tckn)
-                .createdAt(LocalDate.now())
-                .build());
+        assertThrows(NullPointerException.class, () -> new Customer(null, "Ali", null, tckn, LocalDate.now()));
     }
 
     @Test
     void whenTcknIsNull_shouldThrowException() {
-        assertThrows(NullPointerException.class, () -> Customer.builder()
-                .name("Ali")
-                .surname("Veli")
-                .createdAt(LocalDate.now())
-                .build());
+        assertThrows(NullPointerException.class, () -> new Customer(null, "Ali", "Veli", null, LocalDate.now()));
     }
 
     @Test
     void whenCreatedAtIsNull_shouldThrowException() {
         Tckn tckn = new Tckn("12345678901");
 
-        assertThrows(NullPointerException.class, () -> Customer.builder()
-                .name("Ali")
-                .surname("Veli")
-                .tckn(tckn)
-                .build());
+        assertThrows(NullPointerException.class, () -> new Customer(null, "Ali", "Veli", tckn, null));
     }
 }

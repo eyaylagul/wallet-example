@@ -18,13 +18,8 @@ class WalletTest {
 
     @BeforeEach
     void setUp() {
-        customer = Customer.builder()
-                .id(1L)
-                .name("Ali")
-                .surname("Veli")
-                .tckn(new Tckn("12345678901"))
-                .createdAt(LocalDate.now())
-                .build();
+        customer = new Customer(1L, "Ali", "Veli", new Tckn("12345678901"), LocalDate.now());
+
         wallet = new Wallet(
                 1L,
                 customer,
