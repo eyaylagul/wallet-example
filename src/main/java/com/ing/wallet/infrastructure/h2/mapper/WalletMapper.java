@@ -50,7 +50,7 @@ public class WalletMapper {
             var txEntities = domain.getTransactions().stream()
                     .map(transaction -> {
                         var txEntity = transactionMapper.toEntity(transaction);
-                        txEntity.setWallet(entity); // ← Burası ZORUNLU!
+                        txEntity.setWallet(entity);
                         return txEntity;
                     })
                     .collect(Collectors.toList());
