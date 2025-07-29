@@ -54,4 +54,22 @@ public class WalletController {
     ) {
         return ResponseEntity.ok(walletService.withdraw(walletId, request));
     }
+
+    @PostMapping("/{walletId}/transactions/{transactionId}/approve")
+    public ResponseEntity<Wallet> approveTransaction(
+            @PathVariable Long walletId,
+            @PathVariable Long transactionId
+    ) {
+        Wallet updatedWallet = walletService.approveTransaction(walletId, transactionId);
+        return ResponseEntity.ok(updatedWallet);
+    }
+
+    @PostMapping("/{walletId}/transactions/{transactionId}/deny")
+    public ResponseEntity<Wallet> denyTransaction(
+            @PathVariable Long walletId,
+            @PathVariable Long transactionId
+    ) {
+        Wallet updatedWallet = walletService.denyTransaction(walletId, transactionId);
+        return ResponseEntity.ok(updatedWallet);
+    }
 }
